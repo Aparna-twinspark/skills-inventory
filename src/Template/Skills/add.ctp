@@ -1,0 +1,19 @@
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('List Skills'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Ratings'), ['controller' => 'Ratings', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Rating'), ['controller' => 'Ratings', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="skills form large-9 medium-8 columns content">
+    <?= $this->Form->create($skill) ?>
+    <fieldset>
+        <legend><?= __('Add Skill') ?></legend>
+        <?php
+            echo $this->Form->input('skill_name');
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
