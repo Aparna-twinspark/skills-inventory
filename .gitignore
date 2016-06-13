@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-/vendor/*
-/config/app.php
-/tmp/*
-/logs/*
-=======
+
 # CakePHP 3
 
 /vendor/*
@@ -22,11 +17,3 @@
 
 /logs/*
 !/logs/empty
-
-# CakePHP 2
-
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
->>>>>>> 0f0d1befe506c83a74e13f7df10c70d62387cde9

@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-# CakePHP Application Skeleton
-
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![License](https://img.shields.io/packagist/l/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
-
-A skeleton for creating applications with [CakePHP](http://cakephp.org) 3.x.
-
 The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
 
 ## Installation
@@ -23,8 +15,8 @@ the setup traffic lights.
 
 ## Configuration
 
-Read and edit `config/app.php` and setup the 'Datasources' and any other
+1. Read and edit `config/app.php` and setup the 'Datasources' and any other
 configuration relevant for your application.
-=======
-# skills-inventory
->>>>>>> 0f0d1befe506c83a74e13f7df10c70d62387cde9
+2. 
+
+
