@@ -1,4 +1,4 @@
-<?= $this->Html->docType();
+<?= $this->Html->docType(); ?>
 <?
 $title = 'TWINSPARK | Skills Invetory Management';
 ?>
@@ -55,6 +55,11 @@ $title = 'TWINSPARK | Skills Invetory Management';
                 --></div>
                 <div class="form-group">
                     <?= $this->Form->input('password') ?>
+                </div>
+                <div class="form-group">
+                <?= $this->Form->input('role', [
+                'options' => ['admin' => 'Admin', 'author' => 'Author']
+                ]) ?>
                 </div>
                 <div class="form-group">
                 <?= $this->Form->button('Login') ?>

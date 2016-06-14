@@ -56,10 +56,10 @@ class AppController extends Controller
         ]);
     }
     
-    /*public function beforeFilter(Event $event)
+    public function beforeFilter(Event $event)
     {
-        //$this->Auth->allow(['index', 'view', 'display']);
-    }*/
+        $this->Auth->allow(['index', 'view', 'display','login']);
+    }
 
     /**
      * Before render callback.

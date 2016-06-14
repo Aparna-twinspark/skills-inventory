@@ -16,12 +16,12 @@ class EmployeesController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    /*public function beforeFilter(Event $event)
+    public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('add');
+        $this->Auth->allow('add','login');
     } 
-    */
+    
     public function login()
     {
         if ($this->request->is('post')) {
