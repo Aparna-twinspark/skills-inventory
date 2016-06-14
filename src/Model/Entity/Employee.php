@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Employee Entity.
@@ -26,10 +27,17 @@ class Employee extends Entity
      *
      * @var array
      */
+    
+    
     protected $_accessible = [
         '*' => true,
         'id' => false,
     ];
+    
+    protected function _setPassword($password)
+    {
+        return (new DefaultPasswordHasher)->hash($password);
+    }
 
     /**
      * Fields that are excluded from JSON an array versions of the entity.

@@ -12,14 +12,12 @@ class Nofk extends AbstractMigration
             ->update();
 
         $this->table('employees')
-            ->changeColumn('id', 'biginteger', [
-                'autoIncrement' => true,
-            ])
+            ->changeColumn('id', 'biginteger'
+            )
             ->update();
         $this->table('skills')
-            ->changeColumn('id', 'biginteger', [
-                'autoIncrement' => true,
-            ])
+            ->changeColumn('id', 'biginteger'
+            )
             ->update();
     }
 

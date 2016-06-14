@@ -15,7 +15,9 @@
             echo $this->Form->input('last_name');
             echo $this->Form->input('email_address');
             echo $this->Form->input('password');
-            echo $this->Form->input('role');
+            echo $this->Form->input('role', [
+            'options' => ['admin' => 'Admin', 'employee' => 'Employee']
+        ]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

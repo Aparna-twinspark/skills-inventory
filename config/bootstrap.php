@@ -221,3 +221,5 @@ Type::build('datetime')
     ->useImmutable();
 
 Plugin::load('Skills', ['bootstrap' => false, 'routes' => true]);
+
+Plugin::load('Migrations');

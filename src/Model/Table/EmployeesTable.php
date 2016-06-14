@@ -62,9 +62,14 @@ class EmployeesTable extends Table
             ->notEmpty('password');
 
         $validator
-            ->requirePresence('role', 'create')
-            ->notEmpty('role');
-
+    //        ->requirePresence('role', 'create')
+            ->notEmpty('role', 'A role is required')
+            ->add('role', 'inList', [
+                'rule' => ['inList', ['admin', 'employee']],
+                'message' => 'Please enter a valid role'
+            ]);
+            
         return $validator;
     }
 }
+?>
