@@ -27,6 +27,8 @@
 
 !/tmp/tests/empty
 
+/tmp/debug_kit.sqlite
+
 
 /logs/*
 
