@@ -32,18 +32,20 @@ $title = 'TWINSPARK | Skills Invetory Management';
 
 <body>
     <div id="wrapper">
+       <?= $this->fetch('content') ?>
+    <!--
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            = //$this->Html->image('profile_small.jpg') 
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                             </span> <span class="text-muted text-xs block">= //$this->fetch('role') ?> <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
+                                <li></li>
                                 <li><a href="contacts.html">Contacts</a></li>
                                 <li><a href="mailbox.html">Mailbox</a></li>
                                 <li class="divider"></li>
@@ -51,9 +53,10 @@ $title = 'TWINSPARK | Skills Invetory Management';
                             </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            
                         </div>
                     </li>
+
                     <li class="active">
                         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -301,7 +304,7 @@ $title = 'TWINSPARK | Skills Invetory Management';
         </nav>
         </div>
                 <div class="row  border-bottom white-bg dashboard-header">
-                <?= $this->fetch('content') ?>
+             
 
             </div>
         <div class="row">
@@ -930,7 +933,7 @@ $title = 'TWINSPARK | Skills Invetory Management';
                                 <a href="#">
                                     <span class="label label-primary pull-right">NEW</span>
                                     <h4>The generated</h4>
-                                    <!--<div class="small pull-right m-t-xs">9 hours ago</div>-->
+                                    <!--<div class="small pull-right m-t-xs">9 hours ago</div>
                                     There are many variations of passages of Lorem Ipsum available.
                                     <div class="small">Completion with: 22%</div>
                                     <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
@@ -977,7 +980,7 @@ $title = 'TWINSPARK | Skills Invetory Management';
                                 <a href="#">
                                     <span class="label label-primary pull-right">NEW</span>
                                     <h4>The generated</h4>
-                                    <!--<div class="small pull-right m-t-xs">9 hours ago</div>-->
+                                    <!--<div class="small pull-right m-t-xs">9 hours ago</div>
                                     There are many variations of passages of Lorem Ipsum available.
                                     <div class="small">Completion with: 22%</div>
                                     <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
@@ -1113,43 +1116,43 @@ $title = 'TWINSPARK | Skills Invetory Management';
         </div>
     </div>
 
-    <!-- Mainly scripts -->
+    <!-- Mainly scripts 
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Flot -->
+    <!-- Flot 
     <script src="js/plugins/flot/jquery.flot.js"></script>
     <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
     <script src="js/plugins/flot/jquery.flot.spline.js"></script>
     <script src="js/plugins/flot/jquery.flot.resize.js"></script>
     <script src="js/plugins/flot/jquery.flot.pie.js"></script>
 
-    <!-- Peity -->
+    <!-- Peity
     <script src="js/plugins/peity/jquery.peity.min.js"></script>
     <script src="js/demo/peity-demo.js"></script>
 
-    <!-- Custom and plugin javascript -->
+    <!-- Custom and plugin javascript 
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
-    <!-- jQuery UI -->
+    <!-- jQuery UI
     <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-    <!-- GITTER -->
+    <!-- GITTER 
     <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
 
-    <!-- Sparkline -->
+    <!-- Sparkline 
     <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-    <!-- Sparkline demo data  -->
+    <!-- Sparkline demo data  
     <script src="js/demo/sparkline-demo.js"></script>
 
-    <!-- ChartJS-->
+    <!-- ChartJS
     <script src="js/plugins/chartJs/Chart.min.js"></script>
 
-    <!-- Toastr -->
+    <!-- Toastr 
     <script src="js/plugins/toastr/toastr.min.js"></script>
 
 
@@ -1286,6 +1289,7 @@ $title = 'TWINSPARK | Skills Invetory Management';
             var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
 
         });
-    </script>
+    </script>-->
+    </div>
 </body>
 </html>

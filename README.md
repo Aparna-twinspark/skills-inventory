@@ -15,8 +15,10 @@ the setup traffic lights.
 
 ## Configuration
 
-1. Read and edit `config/app.php` and setup the 'Datasources' and any other
+1. Create Database.
+2. Read and edit `config/app.php` and setup the 'Datasources' and any other
 configuration relevant for your application.
-2. 
+3. Run "bin\cake migrations migrate" on command prompt.
+4.  
 
 

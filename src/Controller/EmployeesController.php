@@ -16,18 +16,18 @@ class EmployeesController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function beforeFilter(Event $event)
+    /*public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         $this->Auth->allow('add');
-    }
-    
+    } 
+    */
     public function login()
     {
         if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
+            $employee = $this->Auth->identify();
+            if ($employee) {
+                $this->Auth->setEmployee($employee);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Invalid username or password, try again'));
