@@ -32,10 +32,10 @@ $title = 'TWINSPARK | Skills Invetory Management';
 
 <body>
     <div id="wrapper">
-       <?= $this->fetch('content') ?>
-    <!--
         <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
+        </nav></div>
+ 
+ <!--           <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
@@ -260,10 +260,13 @@ $title = 'TWINSPARK | Skills Invetory Management';
                 </ul>
 
             </div>
-        </nav>
+        </nav>-->
 
         <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
+        <?= $this->fetch('content') ?>
+        </div>
+        <footer></footer>
+        <!--<div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
@@ -1290,6 +1293,5 @@ $title = 'TWINSPARK | Skills Invetory Management';
 
         });
     </script>-->
-    </div>
 </body>
 </html>
