@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\Rule\IsUnique;
 
 /**
  * Employees Model
@@ -32,6 +33,8 @@ class EmployeesTable extends Table
         $this->hasMany('Ratings', [
             'foreignKey' => 'employee_id'
         ]);
+
+        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -46,30 +49,28 @@ class EmployeesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('first_name', 'create')
-            ->notEmpty('first_name');
-
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
         $validator
-            ->requirePresence('last_name', 'create')
-            ->notEmpty('last_name');
-
-        $validator
-            ->requirePresence('email_address', 'create')
-            ->notEmpty('email_address');
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
 
         $validator
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
-        $validator
+
+/*        $validator
     //        ->requirePresence('role', 'create')
             ->notEmpty('role', 'A role is required')
             ->add('role', 'inList', [
                 'rule' => ['inList', ['admin', 'employee']],
                 'message' => 'Please enter a valid role'
             ]);
-            
+  */          
         return $validator;
     }
+
 }
+
 ?>

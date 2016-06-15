@@ -37,6 +37,11 @@ class AppController extends Controller
      *
      * @return void
      */
+
+    protected $registerDefaults = array(
+        'role' => 'employee'
+    );
+
     public function initialize()
     {
         parent::initialize();
@@ -70,6 +75,11 @@ class AppController extends Controller
     
     public function beforeFilter(Event $event)
     {
+        $this->Auth->config('authenticate', [
+            'Basic' => ['userModel' => 'Employees'],
+            'Form' => ['userModel' => 'Employees'],
+            ]);
+
         $this->Auth->allow(['index', 'view', 'display','login']);
     }
 
@@ -81,7 +91,6 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-         $this->viewBuilder()->theme('Skills');
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {

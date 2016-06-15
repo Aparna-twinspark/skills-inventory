@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Employees Controller
@@ -27,11 +28,13 @@ class EmployeesController extends AppController
         if ($this->request->is('post')) {
             $employee = $this->Auth->identify();
             if ($employee) {
-                $this->Auth->setEmployee($employee);
+                $this->Auth->setUser($employee);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }
+
+         $this->viewBuilder()->layout('login');
     }
     
     public function logout()
@@ -73,17 +76,23 @@ class EmployeesController extends AppController
     public function add()
     {
         $employee = $this->Employees->newEntity();
+
         if ($this->request->is('post')) {
+            //Setting default role for the user
+            
+            $this->request->data['role'] = 'employee';
+            
             $employee = $this->Employees->patchEntity($employee, $this->request->data);
+
             if ($this->Employees->save($employee)) {
-                $this->Flash->success(__('The employee has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('Account created, login to continue.'));
+                return $this->redirect(['action' => 'login']);
             } else {
-                $this->Flash->error(__('The employee could not be saved. Please, try again.'));
+                $this->Flash->error(__('User could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('employee'));
-        $this->set('_serialize', ['employee']);
+    
+         $this->viewBuilder()->layout('login');
     }
 
     /**
