@@ -36,7 +36,9 @@ class EmployeesController extends AppController
                 }
                 else
                 {
-                    return $this->redirect(['action' => 'dashboard']);
+                    return $this->redirect(['controller' => 'Ratings',
+                                            'action' => 'index'
+                                           ]);
 
                 }
              //   return $this->redirect($this->Auth->redirectUrl());
@@ -53,11 +55,11 @@ class EmployeesController extends AppController
         return $this->redirect($this->Auth->logout());
     }
     
-    public function dashboard()
+    /*public function dashboard()
     {
       
      //   return $this->redirect($this->Auth->login());
-    }
+    }*/
     
     public function index()
     {
@@ -158,13 +160,13 @@ class EmployeesController extends AppController
     public function isAuthorized($employee) 
     { 
         $action = $this->request->params['action'];
-    
+       
         // The add and index actions are always allowed. 
         if (in_array($action, ['login'])) { 
             return true; 
         }
         
-        if ((in_array($action,['dashboard'])) && ($this->Auth->user('role')== 'employee')) {
+        if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
             return true;
         }
         

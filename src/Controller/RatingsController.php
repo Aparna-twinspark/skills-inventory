@@ -112,4 +112,30 @@ class RatingsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+    
+    public function isAuthorized($employee) 
+    { 
+        $action = $this->request->params['action'];
+       
+        // The add and index actions are always allowed. 
+        if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
+            return true;
+        }
+                
+        if (empty($this->request->params['pass'][0])) { 
+            return false; 
+            
+        }
+        
+        // Check that the skill belongs to the current user. 
+       /* $id = $this->request->params['pass'][0]; 
+        $skill = $this->Skills->get($id); 
+        if ($skill->user_id == $employee['id']) { 
+                return true; 
+                
+        }*/ 
+        return parent::isAuthorized($employee);
+    
+    }
 }
