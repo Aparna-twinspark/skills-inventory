@@ -29,7 +29,7 @@
                             <?= $this->Html->link(__('Manage Employees'), ['controller' => 'Employees', 'action' => 'index'], ['class' => 'nav-label']) ?>
                         </li>
                         <li>
-                            <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'add'], ['class' => 'nav-label']) ?>
+                            <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'index'], ['class' => 'nav-label']) ?>
                         </li>
             </ul>
 

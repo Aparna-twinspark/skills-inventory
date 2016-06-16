@@ -15,7 +15,7 @@
                     <?= $this->Form->Input('email', ['class' => 'form-control', 'placeholder' => 'email@example.com', 'required'=>'']) ?>
                 </div>
                 <div class="form-group">
-                    <?= $this->Form->Input('password', ['type' => 'password', 'class' => 'form-control', 'placeholder' => 'email@example.com', 'required'=>'']) ?>
+                    <?= $this->Form->Input('password', ['type' => 'password', 'class' => 'form-control', 'placeholder' => 'Enter your password', 'required'=>'']) ?>
                 </div>
                 <?= $this->Form->button('Login', ['type' => 'submit', 'class' => 'btn btn-primary block full-width m-b']); ?>
                 <a href="#"><small>Forgot password?</small></a> <!-- TODO: Aparna please make a forgot password feature -->
