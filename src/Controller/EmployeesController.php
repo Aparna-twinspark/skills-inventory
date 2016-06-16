@@ -166,13 +166,20 @@ class EmployeesController extends AppController
             return true; 
         }
         
-        if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
+        /*if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
             return true;
-        }
+        }*/
         
         if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'admin')) {
             return true;
+        } 
+        elseif (empty($this->request->params['requested'])) {
+        $this->redirect($this->referer());
+            $this->Flash->error(__('Unauthorised access! Try logging in as admin.'));
+            return $this->redirect($this->Auth->logout());
         }
+           
+        
                 
         if (empty($this->request->params['pass'][0])) { 
             return false; 

@@ -58,6 +58,7 @@ class AppController extends Controller
                 'controller' => 'Employees',
                 'action' => 'login'
             ],
+            'authError' => 'Did you really think you are allowed to see that?',
             /*'loginRedirect' => [
                 'controller' => 'Employees',
                 'action' => 'index'
