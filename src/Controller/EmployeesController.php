@@ -29,10 +29,21 @@ class EmployeesController extends AppController
             $employee = $this->Auth->identify();
             if ($employee) {
                 $this->Auth->setUser($employee);
-                return $this->redirect($this->Auth->redirectUrl());
+          
+                if ($this->Auth->user('role')== 'admin')
+                {
+                    return $this->redirect(['action' => 'index']);
+                }
+                else
+                {
+                    return $this->redirect(['action' => 'dashboard']);
+
+                }
+             //   return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }
+        
 
          $this->viewBuilder()->layout('login');
     }
@@ -42,6 +53,11 @@ class EmployeesController extends AppController
         return $this->redirect($this->Auth->logout());
     }
     
+    public function dashboard()
+    {
+        die('haha');
+     //   return $this->redirect($this->Auth->logout());
+    }
     
     public function index()
     {
@@ -138,5 +154,38 @@ class EmployeesController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function isAuthorized($employee) 
+    { 
+        $action = $this->request->params['action'];
+    
+        // The add and index actions are always allowed. 
+        if (in_array($action, ['login', 'add'])) { 
+            return true; 
+            
+        }
+        
+        if ((in_array($action,['dashboard'])) && ($this->Auth->user('role')== 'employee')) {
+            return true;
+        }
+        
+        if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'admin')) {
+            return true;
+        }
+                
+        if (empty($this->request->params['pass'][0])) { 
+            return false; 
+            
+        }
+        
+        // Check that the skill belongs to the current user. 
+        $id = $this->request->params['pass'][0]; 
+        $skill = $this->Skills->get($id); 
+        if ($skill->user_id == $employee['id']) { 
+                return true; 
+                
+        } 
+        return parent::isAuthorized($employee);
+    
+    }
 }
-?>
