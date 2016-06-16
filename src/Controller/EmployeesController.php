@@ -20,7 +20,7 @@ class EmployeesController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('add','login');
+        $this->Auth->allow('login');
     } 
     
     public function login()
@@ -55,8 +55,8 @@ class EmployeesController extends AppController
     
     public function dashboard()
     {
-        die('haha');
-     //   return $this->redirect($this->Auth->logout());
+      
+     //   return $this->redirect($this->Auth->login());
     }
     
     public function index()
@@ -160,9 +160,8 @@ class EmployeesController extends AppController
         $action = $this->request->params['action'];
     
         // The add and index actions are always allowed. 
-        if (in_array($action, ['login', 'add'])) { 
+        if (in_array($action, ['login'])) { 
             return true; 
-            
         }
         
         if ((in_array($action,['dashboard'])) && ($this->Auth->user('role')== 'employee')) {
@@ -179,12 +178,12 @@ class EmployeesController extends AppController
         }
         
         // Check that the skill belongs to the current user. 
-        $id = $this->request->params['pass'][0]; 
+       /* $id = $this->request->params['pass'][0]; 
         $skill = $this->Skills->get($id); 
         if ($skill->user_id == $employee['id']) { 
                 return true; 
                 
-        } 
+        }*/ 
         return parent::isAuthorized($employee);
     
     }

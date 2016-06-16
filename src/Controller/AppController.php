@@ -58,10 +58,10 @@ class AppController extends Controller
                 'controller' => 'Employees',
                 'action' => 'login'
             ],
-            'loginRedirect' => [
+            /*'loginRedirect' => [
                 'controller' => 'Employees',
                 'action' => 'index'
-            ],
+            ],*/
             'logoutRedirect' => [
                 'controller' => 'Employees',
                 'action' => 'login',
