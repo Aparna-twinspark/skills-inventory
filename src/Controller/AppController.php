@@ -38,10 +38,6 @@ class AppController extends Controller
      * @return void
      */
 
-    protected $registerDefaults = array(
-        'role' => 'employee'
-    );
-
     public function initialize()
     {
         parent::initialize();

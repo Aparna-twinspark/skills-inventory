@@ -14,7 +14,7 @@ $title = 'TWINSPARK | Skills Invetory Management';
         <?= $title; ?>
         <?= $this->fetch('title'); ?>
     </title>
-
+    <?= $this->Html->css('custom.css') ?>
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('font-awesome.css') ?>
 
@@ -31,13 +31,12 @@ $title = 'TWINSPARK | Skills Invetory Management';
 </head>
 
 <body>
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation">
-        </nav></div>
-        <div id="page-wrapper" class="gray-bg dashbard-1">
         <?= $this->fetch('content') ?>
+        <div class="footer">
+            <div>
+                <strong>Copyright</strong> TwinSpark Technology and Consulting LLP &copy; 2014-2015
+            </div>
         </div>
-        <footer></footer>
 
 </body>
 </html>
