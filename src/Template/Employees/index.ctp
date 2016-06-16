@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
                             <li class="divider"></li>
-                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
+                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?></li>
 
                         </ul>
                         </div>
