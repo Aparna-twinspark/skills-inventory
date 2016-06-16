@@ -49,6 +49,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
+            'authorize' => 'Controller',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -69,8 +70,11 @@ class AppController extends Controller
                 'controller' => 'Employees',
                 'action' => 'login',
                 'home'
-            ]
+            ],
+            
+            'unauthorizedRedirect' => $this->referer()
         ]);
+        $this->Auth->allow(['logout','add']);
     }
     
     public function beforeFilter(Event $event)
@@ -80,7 +84,7 @@ class AppController extends Controller
             'Form' => ['userModel' => 'Employees'],
             ]);
 
-        $this->Auth->allow(['index', 'view', 'display','login']);
+        
     }
 
     /**
