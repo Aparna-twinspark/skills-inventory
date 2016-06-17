@@ -122,7 +122,6 @@ class RatingsController extends AppController
         if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
             return true;
         }
-                
         if (empty($this->request->params['pass'][0])) { 
             return false; 
             
