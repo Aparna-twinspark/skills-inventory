@@ -26,8 +26,10 @@ class SkillsTable extends Table
         parent::initialize($config);
 
         $this->table('skills');
-        $this->displayField('id');
+        $this->displayField('name');
         $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->hasMany('Ratings', [
             'foreignKey' => 'skill_id'
@@ -43,11 +45,12 @@ class SkillsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('skill_name', 'create')
-            ->notEmpty('skill_name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         return $validator;
     }

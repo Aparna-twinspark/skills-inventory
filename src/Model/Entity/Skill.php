@@ -6,8 +6,10 @@ use Cake\ORM\Entity;
 /**
  * Skill Entity.
  *
- * @property string $id
- * @property string $skill_name
+ * @property int $id
+ * @property string $name
+ * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\Time $created
  * @property \App\Model\Entity\Rating[] $ratings
  */
 class Skill extends Entity

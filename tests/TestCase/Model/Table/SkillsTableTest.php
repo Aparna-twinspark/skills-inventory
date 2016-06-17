@@ -25,7 +25,8 @@ class SkillsTableTest extends TestCase
      */
     public $fixtures = [
         'app.skills',
-        'app.ratings'
+        'app.ratings',
+        'app.employees'
     ];
 
     /**

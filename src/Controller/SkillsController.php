@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Skills Controller
@@ -104,5 +105,40 @@ class SkillsController extends AppController
             $this->Flash->error(__('The skill could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+    
+    public function isAuthorized($employee) 
+    { 
+        $action = $this->request->params['action'];
+       
+        if (in_array($action, ['index'])) { 
+            return true; 
+        }
+        
+        if ($this->Auth->user('role')== 'admin') {
+            return true;
+        } 
+        elseif (empty($this->request->params['requested'])) {
+        $this->redirect($this->referer());
+            $this->Flash->error(__('Unauthorised access! Try logging in as admin.'));
+            return $this->redirect($this->Auth->logout());
+        }
+           
+        
+                
+        if (empty($this->request->params['pass'][0])) { 
+            return false; 
+            
+        }
+        
+        // Check that the skill belongs to the current user. 
+       /* $id = $this->request->params['pass'][0]; 
+        $skill = $this->Skills->get($id); 
+        if ($skill->user_id == $employee['id']) { 
+                return true; 
+                
+        }*/ 
+        return parent::isAuthorized($employee);
+    
     }
 }
