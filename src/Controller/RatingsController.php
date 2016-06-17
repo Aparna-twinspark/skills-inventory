@@ -52,6 +52,10 @@ class RatingsController extends AppController
     public function add()
     {
         $rating = $this->Ratings->newEntity();
+
+       // $this->loadModel('Skills');
+        //$skills = $this->Skills->find('id');
+        //$this->set($skills);
         if ($this->request->is('post')) {
             $rating = $this->Ratings->patchEntity($rating, $this->request->data);
             if ($this->Ratings->save($rating)) {
