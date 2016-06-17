@@ -149,11 +149,12 @@ class EmployeesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $employee = $this->Employees->get($id);
         if ($this->Employees->delete($employee)) {
-            $this->Flash->success(__('The employee has been deleted.'));
+            $this->Flash->success(__('The employee id '.$id.' has been deleted.'));
         } else {
             $this->Flash->error(__('The employee could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+
     }
     
     public function isAuthorized($employee) 
