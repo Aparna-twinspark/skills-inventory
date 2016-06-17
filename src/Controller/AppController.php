@@ -65,8 +65,7 @@ class AppController extends Controller
             ],*/
             'logoutRedirect' => [
                 'controller' => 'Employees',
-                'action' => 'login',
-                'home'
+                'action' => 'login'
             ],
             
             'unauthorizedRedirect' => $this->referer()

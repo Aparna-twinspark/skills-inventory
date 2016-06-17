@@ -161,7 +161,7 @@ class EmployeesController extends AppController
         $action = $this->request->params['action'];
        
         // The add and index actions are always allowed. 
-        if (in_array($action, ['login','add'])) { 
+        if (in_array($action, ['add'])) { 
             return true; 
         }
         
