@@ -20,7 +20,7 @@ class EmployeesController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('login');
+        $this->Auth->allow('login','add');
     } 
     
     public function login()

@@ -71,7 +71,7 @@ class AppController extends Controller
             
             'unauthorizedRedirect' => $this->referer()
         ]);
-        $this->Auth->allow(['logout','add']);
+        $this->Auth->allow(['logout']);
     }
     
     public function beforeFilter(Event $event)
