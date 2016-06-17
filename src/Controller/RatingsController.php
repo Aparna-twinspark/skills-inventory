@@ -119,7 +119,7 @@ class RatingsController extends AppController
         $action = $this->request->params['action'];
        
         // The add and index actions are always allowed. 
-        if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
+        if ($this->Auth->user('role')== 'employee') {
             return true;
         }
         if (empty($this->request->params['pass'][0])) { 
