@@ -1,18 +1,4 @@
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $employee->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Employees'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Ratings'), ['controller' => 'Ratings', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Rating'), ['controller' => 'Ratings', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="employees form large-9 medium-8 columns content">
+<!--<div class="employees form large-9 medium-8 columns content">
     <?= $this->Form->create($employee) ?>
     <fieldset>
         <legend><?= __('Edit Employee') ?></legend>
@@ -42,9 +28,9 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Username</strong>
                              </span> <span class="text-muted text-xs block">Role<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Dashboard</a></li>
+                            <li> <?= $this->Html->link(__('Dashboard'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
                             <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -52,10 +38,10 @@
                     </div>
                 </li>
                 <li>
-                    <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">Manage Employees</span>  </a>
+                    <?= $this->Html->link(__('Manage Employees'), ['controller' => 'Employees', 'action' => 'index'], ['class' => 'nav-label']) ?>
                 </li>
                 <li>
-                    <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">Manage Skills</span></a>
+                    <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'index'], ['class' => 'nav-label']) ?>
                 </li>
             </ul>
 
@@ -69,9 +55,8 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
         </div>
             <ul class="nav navbar-top-links navbar-right">
-                    <a href="login.html">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
+                <li>
+                    <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
                 </li>
             </ul>
         </nav>
@@ -80,7 +65,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Horizontal form</h5>
+                            <h5>Edit Employee</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -91,28 +76,44 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <form class="form-horizontal">
-                                <p>Sign in today for more experience.</p>
-                                <div class="form-group"><label class="col-lg-2 control-label">Email</label>
-
-                                    <div class="col-lg-10"><input type="email" placeholder="Email" class="form-control"> <span class="help-block m-b-none">Example block-level help text here.</span>
+                            <div class="row">
+                            <?= $this->Form->create($employee, ['class' => 'form-horizontal']) ?>
+                            <div class="form-group">
+                                <div class="form-group"><label class="col-lg-2 control-label">Full Name</label>
+                                    <div class="col-lg-8"> 
+                                        <?= $this->Form->input('name', ['label'=> false, 'class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Password</label>
-
-                                    <div class="col-lg-10"><input type="password" placeholder="Password" class="form-control"></div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                        <div class="i-checks"><label> <input type="checkbox"><i></i> Remember me </label></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group"><label class="col-lg-2 control-label">Email Address</label>
+                                    <div class="col-lg-8"> 
+                                        <?= $this->Form->input('email',['label' => false, 'class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-sm btn-white" type="submit">Sign in</button>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group"><label class="col-lg-2 control-label">New Password</label>
+                                    <div class="col-lg-8"> 
+                                        <?= $this->Form->input('password', ['label' => false, 'type' => 'password', 'class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                             <div class="form-group">
+                                <div class="form-group"><label class="col-lg-2 control-label">Role</label>
+                                    <div class="col-sm-8"> 
+                                        <?= $this->Form->select('role', ['' => ['admin', 'employee']], ['label' => false, 'class' => ['form-control', 'm-b']]); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <?= $this->Form->button('Submit', ['type' => 'submit', 'class' => 'btn btn-sm btn-white']) ?>
+                                </div>
+                            </div>
+                            <?= $this->Form->end() ?>
+                        </div>
+                                
                         </div>
                     </div>
                 </div>

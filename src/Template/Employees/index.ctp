@@ -82,6 +82,7 @@
                                 <th><?= $this->Paginator->sort('id') ?></th>
                                 <th><?= $this->Paginator->sort('Name') ?></th>
                                 <th><?= $this->Paginator->sort('email_address') ?></th>
+                                <th><?= $this->Paginator->sort('Role') ?></th> 
                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                             </thead>
@@ -91,6 +92,7 @@
                                 <td><?= h($employee->id) ?></td>
                                 <td><?= h($employee->name) ?></td>
                                 <td><?= h($employee->email) ?></td>
+                                <td><?= ($employee->role) ?></td>
                                 <td class="actions">
                                 <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
