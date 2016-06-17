@@ -23,7 +23,7 @@
                         </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            ⚡⚡
                         </div>
                         <li class="active">
                             <?= $this->Html->link(__('Manage Employees'), ['controller' => 'Employees', 'action' => 'index'], ['class' => 'nav-label']) ?>
@@ -47,7 +47,7 @@
                     <span class="m-r-sm text-muted welcome-message">Welcome to TwinSpark's Skill Inventory Manager.</span>
                 </li>
                 <li>
-                <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?>
+                <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
                 </li>
             </ul>
 
