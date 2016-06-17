@@ -105,4 +105,19 @@ class SkillsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+      public function isAuthorized($employee) 
+    { 
+       // The add and index actions are always allowed. 
+         
+        if ($this->Auth->user('role')== 'admin') {
+            return true;
+        } 
+        elseif (empty($this->request->params['requested'])) {
+        $this->redirect($this->referer());
+            $this->Flash->error(__('Unauthorised access! Try logging in as admin.'));
+            return $this->redirect($this->Auth->logout());
+        }
+         return parent::isAuthorized($employee);
+    }
 }
