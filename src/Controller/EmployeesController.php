@@ -20,7 +20,7 @@ class EmployeesController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('login','add');
+        $this->Auth->allow('add');
     } 
     
     public function login()
@@ -39,7 +39,6 @@ class EmployeesController extends AppController
                     return $this->redirect(['controller' => 'Ratings',
                                             'action' => 'index'
                                            ]);
-
                 }
              //   return $this->redirect($this->Auth->redirectUrl());
             }
@@ -162,7 +161,7 @@ class EmployeesController extends AppController
         $action = $this->request->params['action'];
        
         // The add and index actions are always allowed. 
-        if (in_array($action, ['login'])) { 
+        if (in_array($action, ['login','add'])) { 
             return true; 
         }
         
