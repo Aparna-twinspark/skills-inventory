@@ -1,41 +1,40 @@
-<?php
-use Cake\Core\Configure;
-use Cake\Error\Debugger;
+<!DOCTYPE html>
+<html>
 
-$this->layout = 'error';
+<head>
 
-if (Configure::read('debug')):
-    $this->layout = 'dev_error';
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    $this->assign('title', $message);
-    $this->assign('templateName', 'error400.ctp');
+    <title>INSPINIA | 400 Error</title>
 
-    $this->start('file');
-?>
-<?php if (!empty($error->queryString)) : ?>
-    <p class="notice">
-        <strong>SQL Query: </strong>
-        <?= h($error->queryString) ?>
-    </p>
-<?php endif; ?>
-<?php if (!empty($error->params)) : ?>
-        <strong>SQL Query Params: </strong>
-        <?php Debugger::dump($error->params) ?>
-<?php endif; ?>
-<?= $this->element('auto_table_warning') ?>
-<?php
-    if (extension_loaded('xdebug')):
-        xdebug_print_function_stack();
-    endif;
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    $this->end();
-endif;
-?>
-<h2><?= h($message) ?></h2>
-<p class="error">
-    <strong><?= __d('cake', 'Error') ?>: </strong>
-    <?= sprintf(
-        __d('cake', 'The requested address %s was not found on this server.'),
-        "<strong>'{$url}'</strong>"
-    ) ?>
-</p>
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+
+    <div class="middle-box text-center animated fadeInDown">
+        <h1>400</h1>
+        <h3 class="font-bold">Unauthorised Access</h3>
+
+        <div class="error-desc">
+            Sorry, the page you are looking for has been found but you won't be allowed access to it. Try checking the URL for error, then hit the refresh button on your browser or try found something else in our app.
+        </div>
+        <div>
+            <?= $this->Html->link(__('Return to login'), ['controller' => 'Employees', 'action' => 'login'], ['class' => 'btn btn-primary block full-width m-b']); ?>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
