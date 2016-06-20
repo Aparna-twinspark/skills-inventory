@@ -27,8 +27,10 @@ class RatingsTable extends Table
         parent::initialize($config);
 
         $this->table('ratings');
-        $this->displayField('employee_id');
-        $this->primaryKey(['employee_id', 'skill_id']);
+        $this->displayField('id');
+        $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Employees', [
             'foreignKey' => 'employee_id',
@@ -48,6 +50,10 @@ class RatingsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
         $validator
             ->requirePresence('rating', 'create')
             ->notEmpty('rating');

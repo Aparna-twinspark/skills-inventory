@@ -6,7 +6,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\ORM\Rule\IsUnique;
 
 /**
  * Employees Model
@@ -27,14 +26,14 @@ class EmployeesTable extends Table
         parent::initialize($config);
 
         $this->table('employees');
-        $this->displayField('id');
+        $this->displayField('name');
         $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->hasMany('Ratings', [
             'foreignKey' => 'employee_id'
         ]);
-
-        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -46,12 +45,15 @@ class EmployeesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name');
+
         $validator
+            ->email('email')
             ->requirePresence('email', 'create')
             ->notEmpty('email');
 
@@ -59,18 +61,23 @@ class EmployeesTable extends Table
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
+        $validator
+            ->requirePresence('role', 'create')
+            ->notEmpty('role');
 
-/*        $validator
-    //        ->requirePresence('role', 'create')
-            ->notEmpty('role', 'A role is required')
-            ->add('role', 'inList', [
-                'rule' => ['inList', ['admin', 'employee']],
-                'message' => 'Please enter a valid role'
-            ]);
-  */          
         return $validator;
     }
 
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['email']));
+        return $rules;
+    }
 }
-
-?>

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Skills Controller
@@ -105,11 +106,15 @@ class SkillsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
-
-      public function isAuthorized($employee) 
+    
+    public function isAuthorized($employee) 
     { 
-       // The add and index actions are always allowed. 
-         
+        $action = $this->request->params['action'];
+       
+        if (in_array($action, ['index'])) { 
+            return true; 
+        }
+        
         if ($this->Auth->user('role')== 'admin') {
             return true;
         } 
@@ -118,6 +123,22 @@ class SkillsController extends AppController
             $this->Flash->error(__('Unauthorised access! Try logging in as admin.'));
             return $this->redirect($this->Auth->logout());
         }
-         return parent::isAuthorized($employee);
+           
+        
+                
+        if (empty($this->request->params['pass'][0])) { 
+            return false; 
+            
+        }
+        
+        // Check that the skill belongs to the current user. 
+       /* $id = $this->request->params['pass'][0]; 
+        $skill = $this->Skills->get($id); 
+        if ($skill->user_id == $employee['id']) { 
+                return true; 
+                
+        }*/ 
+        return parent::isAuthorized($employee);
+    
     }
 }

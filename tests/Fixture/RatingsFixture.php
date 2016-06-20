@@ -17,20 +17,18 @@ class RatingsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'employee_id' => ['type' => 'string', 'length' => 10, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'skill_id' => ['type' => 'string', 'length' => 40, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'rating' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        '_indexes' => [
-            'skill_id' => ['type' => 'index', 'columns' => ['skill_id'], 'length' => []],
-        ],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'employee_id' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'skill_id' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'rating' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['employee_id', 'skill_id'], 'length' => []],
-            'ratings_ibfk_1' => ['type' => 'foreign', 'columns' => ['employee_id'], 'references' => ['employees', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'ratings_ibfk_2' => ['type' => 'foreign', 'columns' => ['skill_id'], 'references' => ['skills', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
-            'collation' => 'latin1_swedish_ci'
+            'collation' => 'utf8_general_ci'
         ],
     ];
     // @codingStandardsIgnoreEnd
@@ -42,9 +40,12 @@ class RatingsFixture extends TestFixture
      */
     public $records = [
         [
-            'employee_id' => 'd38e141e-46df-4ce8-ab35-09ce32d69cbd',
-            'skill_id' => '9677992a-8ed0-4222-a509-cf86ed5426eb',
-            'rating' => 'Lorem ipsum dolor '
+            'id' => 1,
+            'employee_id' => 'Lorem ipsum dolor sit amet',
+            'skill_id' => 'Lorem ipsum dolor sit amet',
+            'rating' => 'Lorem ipsum dolor sit amet',
+            'modified' => '2016-06-17 12:25:23',
+            'created' => '2016-06-17 12:25:23'
         ],
     ];
 }

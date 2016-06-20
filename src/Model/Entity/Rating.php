@@ -6,11 +6,14 @@ use Cake\ORM\Entity;
 /**
  * Rating Entity.
  *
+ * @property int $id
  * @property string $employee_id
  * @property \App\Model\Entity\Employee $employee
  * @property string $skill_id
  * @property \App\Model\Entity\Skill $skill
  * @property string $rating
+ * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\Time $created
  */
 class Rating extends Entity
 {
@@ -26,7 +29,6 @@ class Rating extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'employee_id' => false,
-        'skill_id' => false,
+        'id' => false,
     ];
 }

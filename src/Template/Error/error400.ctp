@@ -24,7 +24,7 @@
         <h3 class="font-bold">Unauthorised Access</h3>
 
         <div class="error-desc">
-            Sorry, the page you are looking for has been found but you won't be allowed access to it. Try checking the URL for error, then hit the refresh button on your browser or try found something else in our app.
+            Sorry, the page you are looking for has been found but you won't be allowed access to it. Try keeping your smartness in check by following the provided links and not the URLs, now hit the return to login button.
         </div>
         <div>
             <?= $this->Html->link(__('Return to login'), ['controller' => 'Employees', 'action' => 'login'], ['class' => 'btn btn-primary block full-width m-b']); ?>
