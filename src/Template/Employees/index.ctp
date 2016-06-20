@@ -16,7 +16,7 @@
                             </span> 
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li> <?= $this->Html->link(__('Dashboard'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
                             <li class="divider"></li>
                             <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?></li>
 
@@ -53,6 +53,7 @@
 
         </nav>
         </div>
+        <?= $this->Flash->render(); ?>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2>Static Tables</h2>
@@ -66,7 +67,7 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Basic Table</h5>
+                        <h5>All Employees Table</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -81,7 +82,7 @@
                                 <th><?= $this->Paginator->sort('id') ?></th>
                                 <th><?= $this->Paginator->sort('Name') ?></th>
                                 <th><?= $this->Paginator->sort('email_address') ?></th>
-                                <th><?= $this->Paginator->sort('password') ?></th>
+                                <th><?= $this->Paginator->sort('Role') ?></th> 
                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                             </thead>
@@ -89,10 +90,9 @@
                             <?php foreach ($employees as $employee): ?>
                                 <tr>
                                 <td><?= h($employee->id) ?></td>
-                                <td><?= h($employee->first_name) ?></td>
-                                <td><?= h($employee->last_name) ?></td>
-                                <td><?= h($employee->email_address) ?></td>
-                                <td><?= h($employee->password) ?></td>
+                                <td><?= h($employee->name) ?></td>
+                                <td><?= h($employee->email) ?></td>
+                                <td><?= ($employee->role) ?></td>
                                 <td class="actions">
                                 <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
