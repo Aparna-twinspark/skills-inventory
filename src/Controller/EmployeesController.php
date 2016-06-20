@@ -80,7 +80,6 @@ class EmployeesController extends AppController
         $employee = $this->Employees->get($id, [
             'contain' => ['Ratings']
         ]);
-
         $this->set('employee', $employee);
         $this->set('_serialize', ['employee']);
     }
@@ -126,6 +125,7 @@ class EmployeesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->data);
+            if($this->request->data)
             if ($this->Employees->save($employee)) {
                 $this->Flash->success(__('The employee has been saved.'));
                 return $this->redirect(['action' => 'index']);
