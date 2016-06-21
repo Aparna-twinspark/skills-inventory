@@ -55,8 +55,7 @@ class RatingsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('rating', 'create')
-            ->notEmpty('rating');
+            ->allowEmpty('rating');
 
         return $validator;
     }
@@ -73,5 +72,16 @@ class RatingsTable extends Table
         $rules->add($rules->existsIn(['employee_id'], 'Employees'));
         $rules->add($rules->existsIn(['skill_id'], 'Skills'));
         return $rules;
+    }
+
+    public function convertUserSelectedSkillsToRatingsData(Array $data, $employee_id) {
+            foreach($data['user_selected_skills'] as $skill_id) {
+                $arrayOfRatingData[] = [
+                                            "employee_id" => $employee_id,
+                                            "skill_id" => $skill_id
+                                        ];
+            }  
+        return $arrayOfRatingData;
+
     }
 }

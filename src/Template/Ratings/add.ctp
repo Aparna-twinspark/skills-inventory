@@ -68,6 +68,7 @@
             </ul>
         </nav>
         </div>
+        <?= $this->Flash->render(); ?>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2>New Rating</h2>
@@ -84,22 +85,42 @@
                         <h5>Add new.</h5>
                     </div>
                     <div class="ibox-content">
-                        <div class="row">
-                            <!--<div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Sign in</h3>
-                                <p>Sign in today for more experience.</p>-->
-                            <?= $this->Form->create($rating) ?>
-                                <div class="form-group">
-                                    <?= $this->Form->Input('Skill Id', ['class' => 'form-control', 'placeholder' => 'Options', 'required'=>'']) ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $this->Form->Input('Rating', ['class' => 'form-control', 'placeholder' => 'How would you rate this skill ?', 'required'=>'']) ?>
-                                </div>
-                                <div>
-                                    <?= $this->Form->button('Add Skill', ['type' => 'submit', 'class' => 'btn btn-sm btn-primary pull-right m-t-n-xs']); ?>
-                                </div>
-                                <?= $this->Form->end() ?>
-                            </div>
-                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><?= $this->Paginator->sort('Skill Id') ?></th>
+                                <th><?= $this->Paginator->sort('Skill') ?></th>
+                                <th><?= $this->Paginator->sort('Rating') ?></th>
+                                <th class="actions"><?= __('Actions') ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?= $this->Form->create(); ?>
+                            <?php foreach ($skills as $skill):  ?>                               
+                                <tr>
+                                <td><?= $this->Form->label($skill->id) ?  : '' ?></td>
+                                <td><?= $this->Form->label($skill->name) ? : '' ?></td>
+                                <td>
+                                <? if($skills->rating != null) 
+                                    {
+                                        $this->Form->select('Rating', ['' => 'options'], ['label' => false, 'class' => ['form-control', 'm-b'], 'placeholder' => 'Options']); 
+                                    }
+                                else
+                                {
+                                    $this->Form->label($skill->rating);
+                                } ?>
+
+                                </td>
+                                <td></td>
+                                <td class="actions">
+                                <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]) ?>
+                                </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

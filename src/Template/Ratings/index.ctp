@@ -8,9 +8,12 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
-                                    <strong class="font-bold">Username</strong>
+                                    <strong class="font-bold">
+                                        <?php echo $user_name ?>
+                                    </strong>
                                 </span> 
-                                <span class="text-muted text-xs block">Role
+                                <span class="text-muted text-xs block">
+                                     <?php echo $user_role ?>
                                     <b class="caret"></b>
                                 </span> 
                             </span> 
@@ -26,10 +29,10 @@
                             IN+
                         </div>
                         <li class="active">
-                            <?= $this->Html->link(__('View Skills'), ['controller' => 'Ratings', 'action' => 'view'], ['class' => 'nav-label']) ?>
+                            <?= $this->Html->link(__('Skills list'), ['controller' => 'Ratings', 'action' => 'index'], ['class' => 'nav-label']) ?>
                         </li>
                         <li>
-                            <?= $this->Html->link(__('Add new Rating'), ['controller' => 'Ratings', 'action' => 'add'], ['class' => 'nav-label']) ?>
+                            <?= $this->Html->link(__('My Skills'), ['controller' => 'Ratings', 'action' => 'view'], ['class' => 'nav-label']) ?>
                         </li>
             </ul>
 
@@ -50,6 +53,7 @@
 
         </nav>
         </div>
+            <?= $this->Flash->render(); ?>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2>Static Tables</h2>
@@ -75,29 +79,31 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th><?= $this->Paginator->sort('skill_id') ?></th>
-                                <th><?= $this->Paginator->sort('rating') ?></th>
-                                <th class="actions"><?= __('Actions') ?></th>
+                                <th><?= $this->Paginator->sort('Skill Id') ?></th>
+                                <th><?= $this->Paginator->sort('Skill') ?></th>
+                                <th class="actions"><?= __('Selections') ?></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($ratings as $rating): ?>
+                            <?= $this->Form->create('Post', array('url' => '/Ratings/index')); ?>
+                            <?php foreach ($skills as $skill):  ?>
+                                
                                 <tr>
-                                <td><?= $rating->has('employee') ? $this->Html->link($rating->employee->id, ['controller' => 'Employees', 'action' => 'view', $rating->employee->id]) : '' ?></td>
-                                <td><?= $rating->has('skill') ? $this->Html->link($rating->skill->id, ['controller' => 'Skills', 'action' => 'view', $rating->skill->id]) : '' ?></td>
-                                <td><?= h($rating->rating) ?></td>
-                                <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $rating->employee_id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $rating->employee_id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $rating->employee_id], ['confirm' => __('Are you sure you want to delete # {0}?', $rating->employee_id)]) ?>
-                                </td>
+
+                                <td><?= $this->Form->label($skill->id) ?  : '' ?></td>
+                                <td><?= $this->Form->label($skill->name) ? : '' ?></td>
+                                <td><?= $this->Form->checkbox('user_selected_skills[]', ['hiddenField' => false, 'value' => $skill->id]); ?></td>
                                 </tr>
                             <?php endforeach; ?>
+ 
                             </tbody>
                         </table>
+                        <?= $this->Form->button('Add Skills', ['type' => 'submit', 'class' => 'btn btn-primary block m-b']); ?>
+                        <?= $this->Form->end(); ?>
 
                     </div>
                 </div>
+
                 <div class="paginator">
                     <ul class="pagination">
                     <?= $this->Paginator->prev('< ' . __('previous')) ?>
