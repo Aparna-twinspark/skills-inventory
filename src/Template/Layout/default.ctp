@@ -25,9 +25,11 @@ $title = 'TWINSPARK | Skills Invetory Management';
     <!--link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet"-->
     <?= $this->Html->css('animate.css') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('awesome-bootstrap-checkbox') ?>
     <?= $this->fetch('meta'); ?>
     <?= $this->fetch('css'); ?>
     <?= $this->fetch('script'); ?>
+
 </head>
 
 <body>

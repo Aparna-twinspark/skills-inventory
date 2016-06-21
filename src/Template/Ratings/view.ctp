@@ -8,17 +8,20 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs">     
-                                    <strong class="font-bold">Username</strong>
-                                </span> 
-                                <span class="text-muted text-xs block">Role <b class="caret"></b></span> 
+                                    <strong class="font-bold">
+                                        <?php echo $user_name ?><b class="caret"></b>
+                                    </strong>
+                                </span>  
                             </span> 
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="profile.html">Dashboard</a></li>
+                            <li class="divider"></li>
+                            <li><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        ⚡⚡
                     </div>
                 </li>
                 <li>
@@ -39,7 +42,7 @@
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
+                    <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
         </nav>

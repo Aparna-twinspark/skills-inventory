@@ -9,24 +9,19 @@
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
                                     <strong class="font-bold">
-                                        <?php echo $user_name ?>
+                                        <?php echo $user_name ?><b class="caret"></b>
                                     </strong>
-                                </span> 
-                                <span class="text-muted text-xs block">
-                                     <?php echo $user_role ?>
-                                    <b class="caret"></b>
                                 </span> 
                             </span> 
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="profile.html">Dashboard</a></li>
                             <li class="divider"></li>
                             <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
-
                         </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            ⚡⚡
                         </div>
                         <li class="active">
                             <?= $this->Html->link(__('Skills list'), ['controller' => 'Ratings', 'action' => 'index'], ['class' => 'nav-label']) ?>
@@ -47,7 +42,7 @@
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
+                    <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
 
@@ -85,7 +80,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?= $this->Form->create('Post', array('url' => '/Ratings/index')); ?>
+                            <?= $this->Form->create('Post', array('url' => '/ratings/index')); ?>
                             <?php foreach ($skills as $skill):  ?>
                                 
                                 <tr>

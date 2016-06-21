@@ -36,14 +36,14 @@ class RatingsController extends AppController
                 }
                 # code...
             }
-            $user_name = $this->Auth->user('name');
-            $user_role = $this->Auth->user('role');
+        //    $user_name = $this->Auth->user('name');
+        //    $user_role = $this->Auth->user('role');
 
         $skills = $this->paginate($this->Skills);
         $this->set(compact('skills'));
         $this->set('_serialize', ['skills']);
-        $this->set('user_name', $user_name);
-        $this->set('user_role', $user_role);
+       // $this->set('user_name', $user_name);
+       // $this->set('user_role', $user_role);
     }
     
     public function initialize()

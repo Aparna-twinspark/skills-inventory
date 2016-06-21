@@ -8,17 +8,19 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs">     
-                                    <strong class="font-bold">Username</strong>
-                                </span> 
-                                <span class="text-muted text-xs block">Role <b class="caret"></b></span> 
-                            </span> 
+                                    <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
+                                </span>
+                            </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="login.html">Logout</a></li>
+                           <li><a href="profile.html">Dashboard</a></li>
+                            <li class="divider"></li>
+                            <li><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
+
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        ⚡⚡
                     </div>
                 </li>
                 <li>
@@ -39,7 +41,7 @@
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
+                    <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
         </nav>
@@ -58,15 +60,17 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
+                        <?= $this->Form->create(); ?>
                         <h5><?= $this->form->label($rating->skill->name) ?></h5>
                     </div>
                     <div class="ibox-content">
                         <div class="form-group"><label class="col-sm-2 control-label">Rating</label>
-                                    <div class="col-sm-2">
-                                        <?= $this->Form->select('rating', ['' => ['1', '2', '3', '4', '5']], ['label' => false, 'class' => ['form-control', 'm-b']]); ?>
-                        </div>
-                    </div> 
+                            <div class="col-sm-2">
+                                <?= $this->Form->select('rating', ['' => [$rating->rating ,'1', '2', '3', '4', '5']], ['label' => false, 'class' => ['form-control', 'm-b']]); ?>
+                            </div>
+                        </div> 
                     <div class="form-group"><br><?= $this->Form->button('submit', ['type' => 'submit', 'class' => 'btn btn-primary block m-b']); ?></div>
+                    <?= $this->Form->end() ?>
                 </div>
             </div>
             </div>

@@ -8,7 +8,7 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
-                                    <strong class="font-bold">Username</strong>
+                                    <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
                                 </span> 
                                 <span class="text-muted text-xs block">Role
                                     <b class="caret"></b>
@@ -46,7 +46,7 @@
                     <span class="m-r-sm text-muted welcome-message">Welcome to TwinSpark's Skill Inventory Manager.</span>
                 </li>
                 <li>
-                <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
+                 <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
 

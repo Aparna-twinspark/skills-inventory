@@ -77,11 +77,12 @@ class SkillsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $skill = $this->Skills->patchEntity($skill, $this->request->data);
+
             if ($this->Skills->save($skill)) {
-                $this->Flash->success(__('The skill has been saved.'));
+                $this->Flash->success(__('The skill has been edited.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The skill could not be saved. Please, try again.'));
+                $this->Flash->error(__('The skill could not be edited. Please, try again.'));
             }
         }
         $this->set(compact('skill'));

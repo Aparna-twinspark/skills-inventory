@@ -1,22 +1,3 @@
-<!--<div class="employees form large-9 medium-8 columns content">
-    <?= $this->Form->create($employee) ?>
-    <fieldset>
-        <legend><?= __('Edit Employee') ?></legend>
-        <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('email');
-            echo $this->Form->input('password');
-            echo $this->Form->select('role', ['' => ['admin', 'employee']]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>-->
-
-
-
-
-
 <div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -25,7 +6,7 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Username</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
                              </span> <span class="text-muted text-xs block">Role<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li> <?= $this->Html->link(__('Dashboard'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
@@ -56,7 +37,7 @@
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?>
+                     <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
         </nav>

@@ -8,16 +8,16 @@
                     <div class="dropdown profile-element"> <span>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Username</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
                              </span> <span class="text-muted text-xs block">Role<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="profile.html">Dashboard</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                       ⚡⚡
                     </div>
                 </li>
                 
@@ -39,13 +39,9 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
         </div>
             <ul class="nav navbar-top-links navbar-right">
+                
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to TwinSpark's Skill Inventory Manager.</span>
-                </li>
-                <li>
-                    <a href="login.html">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
+                     <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
 

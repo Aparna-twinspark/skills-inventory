@@ -8,7 +8,7 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
-                                    <strong class="font-bold">Username</strong>
+                                    <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
                                 </span> 
                                 <span class="text-muted text-xs block">Role
                                     <b class="caret"></b>
@@ -16,14 +16,13 @@
                             </span> 
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="profile.html">Dashboard</a></li>
                             <li class="divider"></li>
                             <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
-
                         </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            ⚡⚡
                         </div>
                         <li class="active">
                             <?= $this->Html->link(__('View your ratings'), ['controller' => 'Ratings', 'action' => 'view'], ['class' => 'nav-label']) ?>
@@ -47,7 +46,7 @@
                     <span class="m-r-sm text-muted welcome-message">Welcome to TwinSpark's Skill Inventory Manager.</span>
                 </li>
                 <li>
-                <i class="fa fa-sign-out"></i><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?>
+                 <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
                 </li>
             </ul>
 
