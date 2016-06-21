@@ -1,10 +1,10 @@
-    <div id="wrapper">
+<div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
-            <li class="nav-header">
-            <div class="dropdown profile-element">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
@@ -15,26 +15,25 @@
                                 </span> 
                             </span> 
                         </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li> <?= $this->Html->link(__('Dashboard'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
-                            <li class="divider"></li>
-                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?></li>
-
-                        </ul>
-                        </div>
-                        <div class="logo-element">
-                            ⚡⚡
-                        </div>
-                        <li class="active">
-                            <?= $this->Html->link(__('Manage Employees'), ['controller' => 'Employees', 'action' => 'index'], ['class' => 'nav-label']) ?>
-                        </li>
-                        <li>
-                            <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'index'], ['class' => 'nav-label']) ?>
-                        </li>
-            </ul>
-
-        </div>
-    </nav>
+                    </div>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li> <?= $this->Html->link(__('Dashboard'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
+                        <li class="divider"></li>
+                        <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?></li>
+                    </ul>
+                    <div class="logo-element">
+                        ⚡⚡
+                    </div>
+                </li>
+                    <li class="active">
+                        <?= $this->Html->link(__('Manage Employees'), ['controller' => 'Employees', 'action' => 'index'], ['class' => 'nav-label']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'index'], ['class' => 'nav-label']) ?>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">

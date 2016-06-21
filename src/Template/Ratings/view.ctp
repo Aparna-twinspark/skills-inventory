@@ -1,7 +1,3 @@
-
-
-
-
 <div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -30,7 +26,7 @@
                     <?= $this->Html->link(__('Home'), ['controller' => 'Ratings', 'action' => 'index'], ['class' => 'nav-label']) ?>
                    <!-- <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Home </span></a>
                 --></li>
-            </ul>
+                        </ul>
 
         </div>
     </nav>
