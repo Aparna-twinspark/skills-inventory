@@ -54,4 +54,10 @@ class SkillsTable extends Table
 
         return $validator;
     }
+    
+    public function findBySkillId(Query $query, array $options)
+    {
+        $skillId = $options['skill_id'];
+        return $query->where(['id' => $skillId]);
+    }
 }

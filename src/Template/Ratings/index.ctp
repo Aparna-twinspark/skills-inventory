@@ -5,32 +5,26 @@
             <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
             <div class="dropdown profile-element">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> 
-                                <span class="block m-t-xs"> 
-                                    <strong class="font-bold">
-                                        <?php echo $user_name ?><b class="caret"></b>
-                                    </strong>
-                                </span> 
-                            </span> 
-                        </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Dashboard</a></li>
-                            <li class="divider"></li>
-                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
-                        </ul>
-                        </div>
-                        <div class="logo-element">
-                            ⚡⚡
-                        </div>
-                        <li class="active">
-                            <?= $this->Html->link(__('Skills list'), ['controller' => 'Ratings', 'action' => 'index'], ['class' => 'nav-label']) ?>
-                        </li>
-                        <li>
-                            <?= $this->Html->link(__('My Skills'), ['controller' => 'Ratings', 'action' => 'view'], ['class' => 'nav-label']) ?>
-                        </li>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span class="clear"> 
+                        <span class="block m-t-xs"> 
+                            <strong class="font-bold">
+                                <?php echo $user_name ?><b class="caret"></b>
+                            </strong>
+                        </span> 
+                    </span> 
+                </a>
+            </div>
+            <div class="logo-element">
+                ⚡⚡
+            </div>
+            <li class="active">
+                <?= $this->Html->link(__('Skills list'), ['controller' => 'Ratings', 'action' => 'index'], ['class' => 'nav-label']) ?>
+            </li>
+            <li>
+                <?= $this->Html->link(__('My Skills'), ['controller' => 'Ratings', 'action' => 'view'], ['class' => 'nav-label']) ?>
+            </li>
             </ul>
-
         </div>
     </nav>
 
@@ -70,7 +64,8 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-
+                    <?php if(!$skills->isEmpty()){
+                        ?>
                         <table class="table">
                             <thead>
                             <tr>
@@ -81,13 +76,15 @@
                             </thead>
                             <tbody>
                             <?= $this->Form->create('Post', array('url' => '/ratings/index')); ?>
-                            <?php foreach ($skills as $skill):  ?>
+                            <?php 
+
+                                foreach ($skills as $skill):  ?>
                                 
                                 <tr>
 
                                 <td><?= $this->Form->label($skill->id) ?  : '' ?></td>
                                 <td><?= $this->Form->label($skill->name) ? : '' ?></td>
-                                <td><?= $this->Form->checkbox('user_selected_skills[]', ['hiddenField' => false, 'value' => $skill->id]); ?></td>
+                                <td><?= $this->Form->checkbox('user_selected_skills[]', ['hiddenField' => false, 'value' => (int)$skill->id]); ?></td>
                                 </tr>
                             <?php endforeach; ?>
  
@@ -95,7 +92,9 @@
                         </table>
                         <?= $this->Form->button('Add Skills', ['type' => 'submit', 'class' => 'btn btn-primary block m-b']); ?>
                         <?= $this->Form->end(); ?>
-
+                        <?php } else {
+                                    echo "All skills already added";
+                                } ?>
                     </div>
                 </div>
 

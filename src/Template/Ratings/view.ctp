@@ -1,38 +1,6 @@
 <div id="wrapper">
 
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> 
-                                <span class="block m-t-xs">     
-                                    <strong class="font-bold">
-                                        <?php echo $user_name ?><b class="caret"></b>
-                                    </strong>
-                                </span>  
-                            </span> 
-                        </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Dashboard</a></li>
-                            <li class="divider"></li>
-                            <li><?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'login']) ?></li>
-                        </ul>
-                    </div>
-                    <div class="logo-element">
-                        ⚡⚡
-                    </div>
-                </li>
-                <li>
-                    <i class="fa fa-diamond"></i>
-                    <?= $this->Html->link(__('Home'), ['controller' => 'Ratings', 'action' => 'index'], ['class' => 'nav-label']) ?>
-                   <!-- <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Home </span></a>
-                --></li>
-                        </ul>
-
-        </div>
-    </nav>
+    <?= $this->element('sidebar', ['role' => 'employee']) ?>
 
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
@@ -74,15 +42,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?= $this->Form->create(); ?>
                             <?php foreach ($ratings as $rating):  ?>                               
                                 <tr>
-                                <td><?= $this->Form->label($rating->skill->id) ?  : '' ?></td>
-                                <td><?= $this->Form->label($rating->skill->name) ? : '' ?></td>
-                                <td> <?= $this->Form->label($rating->rating); ?></td>
+                                <td><?= h($rating->skill->id) ?  : '' ?></td>
+                                <td><?= h($rating->skill->name) ? : '' ?></td>
+                                <td> <?= h($rating->rating); ?></td>
                                 <td class="actions">
                                 <?= $this->Html->link('Edit', ['action' => 'edit', $rating->id]) ?>
-                                <?= $this->Form->postLink('Delete', ['action' => 'delete', $rating->id], ['confirm' => __('Are you sure you want to delete # {0}?', $rating->id)]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller'=>'Ratings','action' => 'delete', $rating->id], ['confirm' => __('Are you sure you want to delete # {0}?', $rating->id)]) ?>
                                 </td>
                                 </tr>
                             <?php endforeach; ?>

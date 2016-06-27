@@ -8,27 +8,16 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
-                                    <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
-                                </span> 
-                                <span class="text-muted text-xs block">Role
-                                    <b class="caret"></b>
+                                    <strong class="font-bold"><?php echo $user_name ?></strong>
                                 </span> 
                             </span> 
                         </a>
                     </div>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li> <?= $this->Html->link(__('Dashboard'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
-                            <li class="divider"></li>
-                            <li> <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout']) ?></li>
-                        </ul>
-                    </div>
                     <div class="logo-element">
                         ⚡⚡
                     </div>
-                </li>
-
                  <li><?= $this->Html->link(__('Edit Employee'), ['action' => 'edit', $employee->id], ['class' =>'nav-label'])   ?> </li>
-                 <li><?= $this->Form->postLink(__('Delete Employee'), ['action' => 'delete', $employee->id], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)], ['class' => 'nav-label']) ?> </li>
+                 <li><?= $this->Form->postLink(__('Delete Employee'), ['action' => 'delete', $employee->id], ['class' => 'nav-label'], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]) ?> </li>
                  <li><?= $this->Html->link(__('List Employees'), ['action' => 'index'], ['class' => 'nav-label']) ?> </li>
             </ul>
 
@@ -74,21 +63,13 @@
                 <div class="ibox-content">
                 <table class="table">
                     <tr>
-                        <th><?= __('Employee Id') ?></th>
-                        <th><?= __('Skill Id') ?></th>
+                        <th><?= __('Skill Name') ?></th>
                         <th><?= __('Rating') ?></th>
-                        <th class="actions"><?= __('Actions') ?></th>
                     </tr>
-                    <?php foreach ($employee->ratings as $ratings): ?>
+                    <?php foreach ($ratings as $skill): ?>
                     <tr>
-                        <td><?= h($ratings->employee_id) ?></td>
-                        <td><?= h($ratings->skill_id) ?></td>
-                        <td><?= h($ratings->rating) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__('View'), ['controller' => 'Ratings', 'action' => 'view', $ratings->employee_id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['controller' => 'Ratings', 'action' => 'edit', $ratings->employee_id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Ratings', 'action' => 'delete', $ratings->employee_id], ['confirm' => __('Are you sure you want to delete # {0}?', $ratings->employee_id)]) ?>
-                        </td>
+                        <td><?= h($skill['skill']['name']) ?></td>
+                        <td><?= h($skill['rating']) ?></td>
                     </tr>
                     <?php endforeach; ?>
                 </table>

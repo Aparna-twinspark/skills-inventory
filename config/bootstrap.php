@@ -63,6 +63,7 @@ use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+use App\Error\AppError;
 
 /**
  * Read configuration file and inject configuration into various
@@ -142,6 +143,24 @@ if (!Configure::read('App.fullBaseUrl')) {
     }
     unset($httpHost, $s);
 }
+
+if(!Configure::read('Clever.client_id')) {
+    Configure::write('Clever.client_id', 'abcd');
+}
+if(!Configure::read('Clever.oauth_url')) {
+    Configure::write('Clever.oauth_url', 'https://clever.com/oauth/authorize');
+}
+if(!Configure::read('Clever.redirect_uri')) {
+    Configure::write('Clever.redirect_uri', 'https://readingfun.org/oauth');
+}
+if(!Configure::read('Clever.response_type')) {
+    Configure::write('Clever.response_type', 'code');
+}
+
+
+//Custom error handler config
+$errorHandler = new AppError();
+$errorHandler->register();
 
 Cache::config(Configure::consume('Cache'));
 ConnectionManager::config(Configure::consume('Datasources'));

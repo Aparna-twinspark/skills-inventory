@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Collection\Collection;
 
 /**
  * Employees Controller
@@ -23,8 +24,19 @@ class EmployeesController extends AppController
         $this->Auth->allow('add');
     } 
     
+     public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+        $this->loadModel('Skills');
+        $this->loadModel('Ratings');
+        $this->loadComponent('CleverApi');
+    }
+    
     public function login()
     {
+        pr($this->CleverApi->fetchData('97c46874fd592c8d47b593a1dedcd72a86264b1e', 'districts', '575fb78630dad8010000003c','schools'));
+        die;
         if ($this->request->is('post')) {
             $employee = $this->Auth->identify();
             if ($employee) {
@@ -77,12 +89,14 @@ class EmployeesController extends AppController
      */
     public function view($id = null)
     {
-        $employee = $this->Employees->get($id, [
-            'contain' => ['Ratings']
-        ]);
-        $this->set('employee', $employee);
+        
+        $ratings = $this->Ratings->find()->select(['Skills.name', 'Ratings.rating'])->contain(['Skills'])->where(['employee_id =' => $id])->toArray();
+         
+        $this->set('employee', $this->Employees->get($id));
+        $this->set('ratings', $ratings);
         $this->set('_serialize', ['employee']);
-    }
+         }
+        
 
     /**
      * Add method

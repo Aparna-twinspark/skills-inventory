@@ -71,6 +71,7 @@ class RatingsTable extends Table
     {
         $rules->add($rules->existsIn(['employee_id'], 'Employees'));
         $rules->add($rules->existsIn(['skill_id'], 'Skills'));
+        $rules->add($rules->isUnique(['employee_id','skill_id']));
         return $rules;
     }
 

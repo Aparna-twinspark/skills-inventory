@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\Model;
-
+use Cake\Log\Log;
 /**
  * Ratings Controller
  *
@@ -19,31 +19,43 @@ class RatingsController extends AppController
      */
     public function index()
     {
+        $this->log('On Index Page', 'debug');
+
         if ($this->request->is('post')) {
+            $this->log('Request confirmed to be a POST', 'debug');
             $temps = $this->Ratings->convertUserSelectedSkillsToRatingsData($this->request->data,$this->Auth->user('id'));
+            $this->log('Just converted the skills to Ratings Data', 'debug');
+
             foreach ($temps as $temp) {
                 $rating = $this->Ratings->newEntity();
                 $rating = $this->Ratings->patchEntity($rating, $temp);
                 $success = $this->Ratings->save($rating);
+                $this->log('In the loop, patching each rating and then saving it', 'debug');
              }
                 if ($success) {
+                    $this->log('Hurray, we have success', 'debug');
                         $this->Flash->success(__('The skills has been saved.'));
                          return $this->redirect(['action' => 'view']);
                         
                 }
                 else {
+                    $this->log('Houston, we have a problem!', 'debug');
                         $this->Flash->error(__('The skills could not be saved. Please, try again.'));
                 }
                 # code...
             }
-        //    $user_name = $this->Auth->user('name');
-        //    $user_role = $this->Auth->user('role');
-
-        $skills = $this->paginate($this->Skills);
+            $this->log('Lalala.. Controller ka kaam khatam hhone wala hai', 'debug');
+        $skill1 = $this->Skills->find()
+                ->where(function($exp, $q){
+                        return $exp->notIn('id', 
+                                        $this->Ratings
+                                        ->find()
+                                        ->select(['skill_id'])
+                                        ->where(['employee_id =' => $this->Auth->user('id')]));
+                        });
+        $skills = $this->paginate($skill1);
         $this->set(compact('skills'));
         $this->set('_serialize', ['skills']);
-       // $this->set('user_name', $user_name);
-       // $this->set('user_role', $user_role);
     }
     
     public function initialize()
@@ -65,12 +77,7 @@ class RatingsController extends AppController
         $ratings = $this->Ratings->find()
                 ->where(['employee_id = ' => $this->Auth->user('id')])
                 ->contain (['Skills'])
-                ->all();/*, [
-            'contain' => ['Skills']
-        ]
-        $skills->matching ('Employees', function($q){
-            return $q->where(['Ratings.employee_id'=>$this->Auth->user('id')]);
-        });*/
+                ->all();
 
         $this->set('ratings', $ratings);
         $this->set('_serialize', ['ratings']);
@@ -134,7 +141,7 @@ class RatingsController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
-    {
+    {        
         $this->request->allowMethod(['post', 'delete']);
         $rating = $this->Ratings->get($id);
         if ($this->Ratings->delete($rating)) {
@@ -142,7 +149,7 @@ class RatingsController extends AppController
         } else {
             $this->Flash->error(__('The rating could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'view']);
     }
     
     
@@ -158,14 +165,6 @@ class RatingsController extends AppController
             return false; 
             
         }
-        
-        // Check that the skill belongs to the current user. 
-       /* $id = $this->request->params['pass'][0]; 
-        $skill = $this->Skills->get($id); 
-        if ($skill->user_id == $employee['id']) { 
-                return true; 
-                
-        }*/ 
         return parent::isAuthorized($employee);
     
     }

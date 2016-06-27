@@ -60,13 +60,13 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <?= $this->Form->create(); ?>
+                        <?= $this->Form->create($rating); ?>
                         <h5><?= $this->form->label($rating->skill->name) ?></h5>
                     </div>
                     <div class="ibox-content">
                         <div class="form-group"><label class="col-sm-2 control-label">Rating</label>
                             <div class="col-sm-2">
-                                <?= $this->Form->select('rating', ['' => [$rating->rating ,'1', '2', '3', '4', '5']], ['label' => false, 'class' => ['form-control', 'm-b']]); ?>
+                                <?= $this->Form->select('rating', ['' => ['','1', '2', '3', '4', '5']], ['label' => false, 'class' => ['form-control', 'm-b'], ]); ?>
                             </div>
                         </div> 
                     <div class="form-group"><br><?= $this->Form->button('submit', ['type' => 'submit', 'class' => 'btn btn-primary block m-b']); ?></div>
