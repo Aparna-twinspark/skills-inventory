@@ -7,7 +7,7 @@ class AppError extends BaseErrorHandler
 {
     public function _displayError($error, $debug)
     {
-        pr('There has been an error'. json_encode($error);
+        pr('There has been an error'. json_encode($error));
     }
 
    	public function _returnError($error, $json=true)

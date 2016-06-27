@@ -36,7 +36,7 @@ class EmployeesController extends AppController
     public function login()
     {
         pr($this->CleverApi->fetchData('97c46874fd592c8d47b593a1dedcd72a86264b1e', 'districts', '575fb78630dad8010000003c','schools'));
-        die;
+        
         if ($this->request->is('post')) {
             $employee = $this->Auth->identify();
             if ($employee) {
@@ -180,10 +180,6 @@ class EmployeesController extends AppController
             return true; 
         }
         
-        /*if ((in_array($action,['index'])) && ($this->Auth->user('role')== 'employee')) {
-            return true;
-        }*/
-        
         if ((in_array($action,['index','edit','delete','view'])) && ($this->Auth->user('role')== 'admin')) {
             return true;
         } 
@@ -200,13 +196,6 @@ class EmployeesController extends AppController
             
         }
         
-        // Check that the skill belongs to the current user. 
-       /* $id = $this->request->params['pass'][0]; 
-        $skill = $this->Skills->get($id); 
-        if ($skill->user_id == $employee['id']) { 
-                return true; 
-                
-        }*/ 
         return parent::isAuthorized($employee);
     
     }
