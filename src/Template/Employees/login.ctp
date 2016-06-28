@@ -1,9 +1,9 @@
+<!-- Login page-->
+
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
-
                 <h1 class="logo-name">⚡⚡</h1>
-
             </div>
             <h3>Welcome to TwinSpark Skills Inventory App</h3>
             <p>Login to report and manage your skills.
@@ -18,7 +18,6 @@
                     <?= $this->Form->Input('password', ['type' => 'password', 'class' => 'form-control', 'placeholder' => 'Enter your password', 'required'=>'']) ?>
                 </div>
                 <?= $this->Form->button('Login', ['type' => 'submit', 'class' => 'btn btn-primary block full-width m-b']); ?>
-                <a href="#"><small>Forgot password?</small></a> <!-- TODO: Aparna please make a forgot password feature -->
                 <p class="text-muted text-center"><small>Do not have an account?</small></p>
                 <?= $this->Html->link(
                         'Create an account',

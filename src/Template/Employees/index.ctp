@@ -1,5 +1,7 @@
-<div id="wrapper">
+<!-- Admin's index page -->
 
+<div id="wrapper">
+<!-- Sidebar.-->
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
@@ -8,10 +10,7 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
-                                    <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
-                                </span> 
-                                <span class="text-muted text-xs block">Role
-                                    <b class="caret"></b>
+                                    <strong class="font-bold"><?php echo $user_name ?></strong>
                                 </span> 
                             </span> 
                         </a>
@@ -25,49 +24,44 @@
                         ⚡⚡
                     </div>
                 </li>
-                    <li class="active">
+                <li class="active">
                         <?= $this->Html->link(__('Manage Employees'), ['controller' => 'Employees', 'action' => 'index'], ['class' => 'nav-label']) ?>
-                    </li>
-                    <li>
-                        <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'index'], ['class' => 'nav-label']) ?>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-        </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to TwinSpark's Skill Inventory Manager.</span>
                 </li>
                 <li>
-                 <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
+                        <?= $this->Html->link(__('Manage Skills'), ['controller' => 'Skills', 'action' => 'index'], ['class' => 'nav-label']) ?>
                 </li>
             </ul>
-
-        </nav>
+        </div>
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">Welcome to TwinSpark's Skill Inventory Manager.</span>
+                    </li>
+                    <li>
+                        <?= $this->Html->link(__('Logout'), ['controller' => 'Employees', 'action' => 'logout'], ['class' => ['fa', 'fa-sign-out']]) ?>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <?= $this->Flash->render(); ?>
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2>Static Tables</h2>
-                </div>
-                <div class="col-lg-2">
-
-                </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Static Tables</h2>
             </div>
+        </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>All Employees Table</h5>
-                        <div class="ibox-tools">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>All Employees Table</h5>
+                                <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
