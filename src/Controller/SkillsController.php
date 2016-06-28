@@ -13,7 +13,7 @@ class SkillsController extends AppController
 {
 
     /**
-     * Index method
+     * Index method: Displays the skills list.
      *
      * @return \Cake\Network\Response|null
      */
@@ -43,7 +43,7 @@ class SkillsController extends AppController
     }
 
     /**
-     * Add method
+     * Add method: To add new skills.
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
@@ -64,7 +64,7 @@ class SkillsController extends AppController
     }
 
     /**
-     * Edit method
+     * Edit method: To edit the name of a skill.
      *
      * @param string|null $id Skill id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
@@ -108,6 +108,9 @@ class SkillsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
+    /**
+     *isAuthorized method: Checks if the action is accessible to a particular user or not.
+     */   
     public function isAuthorized($employee) 
     { 
         $action = $this->request->params['action'];
@@ -115,31 +118,17 @@ class SkillsController extends AppController
         if (in_array($action, ['index'])) { 
             return true; 
         }
-        
         if ($this->Auth->user('role')== 'admin') {
             return true;
         } 
         elseif (empty($this->request->params['requested'])) {
-        $this->redirect($this->referer());
+            $this->redirect($this->referer());
             $this->Flash->error(__('Unauthorised access! Try logging in as admin.'));
             return $this->redirect($this->Auth->logout());
-        }
-           
-        
-                
+        }                
         if (empty($this->request->params['pass'][0])) { 
-            return false; 
-            
+            return false;     
         }
-        
-        // Check that the skill belongs to the current user. 
-       /* $id = $this->request->params['pass'][0]; 
-        $skill = $this->Skills->get($id); 
-        if ($skill->user_id == $employee['id']) { 
-                return true; 
-                
-        }*/ 
         return parent::isAuthorized($employee);
-    
     }
 }
