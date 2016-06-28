@@ -13,19 +13,38 @@ use Cake\Log\Log;
 class RatingsController extends AppController
 {
     /**
-     * Index method
+    *Initialize method: Loads required components and models.
+    */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+        $this->loadModel('Skills');
+        $this->loadModel('Employees');
+    }
+
+    
+    /**
+     * Index method: Sets the available skills to view and saves user selected skills in the ratings table.
      *
-     * @return \Cake\Network\Response|null
+     *The skills that have not yet been added to the ratings table are set to the view. 
+     *On submission of the form, the data is redirected to Model for conversion to the required format.
+     *Followed by this, it tries to save the data. If successful, user is redirected to Ratings/view.
+     *
+     * @return redirects on successful save, else renders view.
      */
+    
     public function index()
     {
         $this->log('On Index Page', 'debug');
 
         if ($this->request->is('post')) {
             $this->log('Request confirmed to be a POST', 'debug');
+            /* 
+                convertUserSelectedSkillsToRatingsData() converts the user submitted data in the format required by save().
+            */
             $temps = $this->Ratings->convertUserSelectedSkillsToRatingsData($this->request->data,$this->Auth->user('id'));
             $this->log('Just converted the skills to Ratings Data', 'debug');
-
             foreach ($temps as $temp) {
                 $rating = $this->Ratings->newEntity();
                 $rating = $this->Ratings->patchEntity($rating, $temp);
@@ -42,36 +61,30 @@ class RatingsController extends AppController
                     $this->log('Houston, we have a problem!', 'debug');
                         $this->Flash->error(__('The skills could not be saved. Please, try again.'));
                 }
-                # code...
             }
             $this->log('Lalala.. Controller ka kaam khatam hhone wala hai', 'debug');
-        $skill1 = $this->Skills->find()
+            /* 
+                To find all the skills that haven't yet been rated by the user.  
+            */
+            $skill1 = $this->Skills->find()
                 ->where(function($exp, $q){
-                        return $exp->notIn('id', 
-                                        $this->Ratings
-                                        ->find()
-                                        ->select(['skill_id'])
-                                        ->where(['employee_id =' => $this->Auth->user('id')]));
-                        });
-        $skills = $this->paginate($skill1);
-        $this->set(compact('skills'));
-        $this->set('_serialize', ['skills']);
+                             return $exp->notIn('id', $this->Ratings
+                                                           ->find()
+                                                           ->select(['skill_id'])
+                                                           ->where(['employee_id =' => $this->Auth->user('id')]
+                                                ));
+                                            });
+            $skills = $this->paginate($skill1);
+            $this->set(compact('skills'));
+            $this->set('_serialize', ['skills']);
     }
     
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('RequestHandler');
-        $this->loadModel('Skills');
-        $this->loadModel('Employees');
-    }
+    
     /**
-     * View method
-     *
-     * @param string|null $id Rating id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    *
+    * View method: Finds all the ratings given by the user. 
+    *
+    */
     public function view()
     {
         $ratings = $this->Ratings->find()
@@ -83,37 +96,12 @@ class RatingsController extends AppController
         $this->set('_serialize', ['ratings']);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    /*public function add()
-    { 
-        $rating = $this->Ratings->newEntity();
-
-        if ($this->request->is('post')) {
-            $rating = $this->Ratings->patchEntity($rating, $this->request->data);
-            if ($this->Ratings->save($rating)) {
-                $this->Flash->success(__('The rating has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The rating could not be saved. Please, try again.'));
-            }
-        }
-        $employees = $this->Ratings->Employees->find('list', ['limit' => 200]);
-        $skills = $this->Ratings->Skills->find('list', ['limit' => 200]);
-        $this->set(compact('rating', 'employees', 'skills'));
-        $this->set('_serialize', ['rating']);
-        
-    }*/
 
     /**
-     * Edit method
+     * Edit method: Edits a specific rating.
      *
      * @param string|null $id Rating id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -138,7 +126,6 @@ class RatingsController extends AppController
      *
      * @param string|null $id Rating id.
      * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {        
@@ -152,7 +139,10 @@ class RatingsController extends AppController
         return $this->redirect(['action' => 'view']);
     }
     
-    
+ 
+    /**
+     *isAuthorized method: Checks if the action is accessible to a particular user or not.
+     */   
     public function isAuthorized($employee) 
     { 
         $action = $this->request->params['action'];
@@ -169,5 +159,3 @@ class RatingsController extends AppController
     
     }
 }
-
-
