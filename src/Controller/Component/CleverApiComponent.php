@@ -43,11 +43,10 @@ class CleverApiComponent extends Component
 			throw new Exception(__("Resource Name or Token is missing or mispelled. The available options are ".implode(", ",array_keys($this->_resources))));
 		}
 			
-		if(!in_array($subResource, $this->_resources[$resource]))
-		{
+                    if(!empty($subResource) && !in_array($subResource, $this->_resources[$resource]))
+                    {
 			throw new Exception(__("Incorrect Subresource provided. The available options for ".$resource." are ".implode(", ",$this->_resources[$resource])));
-		}
-
+                    }
 		$url = $this->_createUrl($resource, $id, $subResource);
 		return  $this->_fetchResponseData($url, $token);	
 	}

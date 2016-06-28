@@ -2,7 +2,7 @@
         <div>
             <div>
 
-                <h1 class="logo-name">IN+</h1>
+                <h1 class="logo-name">⚡⚡</h1>
 
             </div>
             <h3>Register to TwinSpark Skills Inventory</h3>

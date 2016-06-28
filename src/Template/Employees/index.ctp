@@ -8,10 +8,7 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
-                                    <strong class="font-bold"><?php echo $user_name ?><b class="caret"></b></strong>
-                                </span> 
-                                <span class="text-muted text-xs block">Role
-                                    <b class="caret"></b>
+                                    <strong class="font-bold"><?php echo $user_name ?></strong>
                                 </span> 
                             </span> 
                         </a>
@@ -96,6 +93,7 @@
                                 <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
                                 <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]) ?>
+                                <?= $this->Clever->loginButton('full'); ?>
                                 </td>
                                 </tr>
                             <?php endforeach; ?>

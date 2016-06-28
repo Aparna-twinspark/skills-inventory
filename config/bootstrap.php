@@ -63,7 +63,7 @@ use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
-use App\Error\AppError;
+//use App\Error\AppError;
 
 /**
  * Read configuration file and inject configuration into various
@@ -158,9 +158,10 @@ if(!Configure::read('Clever.response_type')) {
 }
 
 
-//Custom error handler config
+/* //Custom error handler config
 $errorHandler = new AppError();
 $errorHandler->register();
+*/
 
 Cache::config(Configure::consume('Cache'));
 ConnectionManager::config(Configure::consume('Datasources'));

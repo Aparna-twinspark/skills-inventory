@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\Collection\Collection;
 
 /**
  * Employees Controller
@@ -14,34 +13,50 @@ class EmployeesController extends AppController
 {
 
     /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
+     * beforeFilter method: Calls the allow function of the Auth component.
+     * @param Object of event class.
      */
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
+        /* 
+         * The following line of code is used to allow an action without a user being authenticated. 
+         * It is called with the action name to be allowed either in initialised or before render of that controller.
+        */
         $this->Auth->allow('add');
-    } 
-    
+    }
+
+    /**
+     * initialize method: Used for loading Components, Models and every prerequisite
+     * for the underlying functions of the comtroller.
+     * 
+     */
      public function initialize()
     {
         parent::initialize();
+        //Components and Models are loaded using the following commands.
         $this->loadComponent('RequestHandler');
+        //By default the Model of a controller is loaded in it. But as Skills and Ratings Model do not belong to the Employees controller hence it is loaded in the Employees Controller specially.
         $this->loadModel('Skills');
         $this->loadModel('Ratings');
         $this->loadComponent('CleverApi');
     }
     
+    /**
+     * Login method: It calls the identify function of the Auth component to check the data passed in the post request.
+     * 
+     * @return rediret method for the respective user.
+     */
     public function login()
-    {
-        pr($this->CleverApi->fetchData('97c46874fd592c8d47b593a1dedcd72a86264b1e', 'districts', '575fb78630dad8010000003c','schools'));
+    {   
+        //Calling our custom made Clever API's fetchData() method with some attributes.
+       $this->CleverApi->fetchData('97c46874fd592c8d47b593a1dedcd72a86264b1e', 'districts');
         
         if ($this->request->is('post')) {
             $employee = $this->Auth->identify();
             if ($employee) {
                 $this->Auth->setUser($employee);
-          
+                
                 if ($this->Auth->user('role')== 'admin')
                 {
                     return $this->redirect(['action' => 'index']);
@@ -57,21 +72,27 @@ class EmployeesController extends AppController
             $this->Flash->error(__('Invalid username or password, try again'));
         }
         
-
-         $this->viewBuilder()->layout('login');
+        //We have used this viewBuilder because the default layout of the login was different than the rest of the pages.
+        $this->viewBuilder()->layout('login');
     }
     
+    /**
+     * Logout method: It calls the logout function of the Auth component.
+     * 
+     * @return rediret method
+     */
     public function logout()
     {
         return $this->redirect($this->Auth->logout());
     }
     
-    /*public function dashboard()
-    {
-      
-     //   return $this->redirect($this->Auth->login());
-    }*/
-    
+    /**
+     * Index method: The admin is directed here immediately after logging in. It shows the list of employees enrolled
+     * in the application.
+     * 
+     * @return sets the view of the index.
+     */ 
+
     public function index()
     {
         $employees = $this->paginate($this->Employees);
@@ -81,16 +102,20 @@ class EmployeesController extends AppController
     }
 
     /**
-     * View method
+     * View method: Views individual employees using their $id.
      *
-     * @param string|null $id Employee id.
-     * @return \Cake\Network\Response|null
+     * @param string|null $id Employee id. We get this from the URL.
+     * @return Employee's skills with their ratings.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         
-        $ratings = $this->Ratings->find()->select(['Skills.name', 'Ratings.rating'])->contain(['Skills'])->where(['employee_id =' => $id])->toArray();
+        $ratings = $this->Ratings->find()
+                                 ->select(['Skills.name', 'Ratings.rating'])
+                                 ->contain(['Skills'])
+                                 ->where(['employee_id =' => $id])
+                                 ->toArray();
          
         $this->set('employee', $this->Employees->get($id));
         $this->set('ratings', $ratings);
@@ -99,9 +124,9 @@ class EmployeesController extends AppController
         
 
     /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     * Add method: Registration page for new users. The viewBuilder sets a different layout than the default layout.
+     * 
+     * @return \Cake\Network\Response|void Redirects to login page on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -126,7 +151,7 @@ class EmployeesController extends AppController
     }
 
     /**
-     * Edit method
+     * Edit method: Edits the employees enrolled in the application, except for the ratings and the skills selected by them.
      *
      * @param string|null $id Employee id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
@@ -152,7 +177,7 @@ class EmployeesController extends AppController
     }
 
     /**
-     * Delete method
+     * Delete method: Deletes the respective employee. 
      *
      * @param string|null $id Employee id.
      * @return \Cake\Network\Response|null Redirects to index.
@@ -170,7 +195,14 @@ class EmployeesController extends AppController
         return $this->redirect(['action' => 'index']);
 
     }
-    
+
+     /**
+     * isAuthorised method: Authorises the users to access certain actions of the controller by checking their role.
+     *
+     * @param string|null $employee
+     * @return true or false.
+     * @throws Error for Unauthorised access and calls the logout function.
+     */
     public function isAuthorized($employee) 
     { 
         $action = $this->request->params['action'];
