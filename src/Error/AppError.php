@@ -17,7 +17,7 @@ class AppError extends BaseErrorHandler
 
     public function _displayException($exception)
     {
-        return 'There has been an exception!';
+        pr ('There has been an exception!');
     }
 }
 
