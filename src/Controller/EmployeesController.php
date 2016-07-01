@@ -196,6 +196,11 @@ class EmployeesController extends AppController
 
     }
 
+     public function questionssurvey()
+    {
+        $this->viewBuilder()->layout('pathways');
+        $this->render();
+    }
      /**
      * isAuthorised method: Authorises the users to access certain actions of the controller by checking their role.
      *
@@ -212,7 +217,7 @@ class EmployeesController extends AppController
             return true; 
         }
         
-        if ((in_array($action,['index','edit','delete','view'])) && ($this->Auth->user('role')== 'admin')) {
+        if ((in_array($action,['index','edit','delete','view','questionssurvey'])) && ($this->Auth->user('role')== 'admin')) {
             return true;
         } 
         elseif (empty($this->request->params['requested'])) {
@@ -231,4 +236,5 @@ class EmployeesController extends AppController
         return parent::isAuthorized($employee);
     
     }
+
 }
